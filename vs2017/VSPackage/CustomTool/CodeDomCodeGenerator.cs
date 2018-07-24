@@ -57,7 +57,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
             {
                 IsClass = true,
                 IsPartial = true, 
-                TypeAttributes = TypeAttributes.Sealed | (classAccessibility ?? TypeAttributes.Public),
+                TypeAttributes = (classAccessibility ?? TypeAttributes.Public),
                 Attributes = MemberAttributes.Public | MemberAttributes.Static | MemberAttributes.Final
             };
 
@@ -153,7 +153,6 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
                     Name = name,
                     Attributes = MemberAttributes.Public,
                     HasGet = true,
-                    HasSet = true,
                     Type = new CodeTypeReference(typeof (string))
                 };
 
@@ -166,6 +165,8 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
                             new CodeFieldReferenceExpression(null, "resourceLoader"),
                             "GetString",
                             new CodePrimitiveExpression(key))));
+
+                targetClass.Members.Add(property);
             }
 
             codeNamespace.Types.Add(targetClass);
