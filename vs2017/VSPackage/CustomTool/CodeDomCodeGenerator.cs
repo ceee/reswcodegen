@@ -1,6 +1,7 @@
 using System;
 using System.CodeDom;
 using System.CodeDom.Compiler;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
@@ -134,6 +135,11 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
             targetClass.Members.Add(constructor);
 
             var resources = ResourceParser.Parse();
+            var idx = 0;
+
+            StringBuilder resourceKeysStringBuilder = new StringBuilder();
+            resourceKeysStringBuilder.Append("new string[] { ");
+
             foreach (var item in resources)
             {
                 if (string.IsNullOrEmpty(item.Name))
@@ -148,26 +154,37 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
                   key = key.Replace(".", "/");
                 }
 
-                var property = new CodeMemberProperty
+                var property = new CodeMemberField
                 {
                     Name = name,
                     Attributes = MemberAttributes.Public,
-                    HasGet = true,
                     Type = new CodeTypeReference(typeof (string))
                 };
 
-                property.Comments.Add(new CodeCommentStatement("<summary>", true));
-                property.Comments.Add(new CodeCommentStatement("Localized resource similar to \"" + (item.Value ?? item.Name) + "\"", true));
-                property.Comments.Add(new CodeCommentStatement("</summary>", true));
-                property.GetStatements.Add(
-                    new CodeMethodReturnStatement(
-                        new CodeMethodInvokeExpression(
-                            new CodeFieldReferenceExpression(null, "resourceLoader"),
-                            "GetString",
-                            new CodePrimitiveExpression(key))));
+                property.Name += " { get; private set; } //";
+                
+                resourceKeysStringBuilder.Append($"\"{name}\"");
+                if (idx < resources.Count - 1)
+                {
+                  resourceKeysStringBuilder.Append(", ");
+                }
 
                 targetClass.Members.Add(property);
+
+                idx += 1;
             }
+      
+            resourceKeysStringBuilder.Append(" }");
+
+            var keysField = new CodeMemberField()
+            {
+                Name = "ResourceKeys",
+                Type = new CodeTypeReference(typeof(string[])),
+                Attributes = MemberAttributes.Private | MemberAttributes.Final,
+                InitExpression = new CodeSnippetExpression(resourceKeysStringBuilder.ToString())
+            };
+
+            targetClass.Members.Add(keysField);
 
             codeNamespace.Types.Add(targetClass);
             compileUnit.Namespaces.Add(codeNamespace);
