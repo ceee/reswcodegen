@@ -4,7 +4,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage
 {
     internal static class Guids
     {
-        public const string guidVSPackagePkgString = "6a4c1726-440f-4b2d-a2e5-711277da6099";
+        public const string guidVSPackagePkgString = "1a4c1726-440f-4b2d-a2e5-711277da6099";
         public const string guidVSPackageCmdSetString = "fb40dc0b-2f75-404c-ba4e-dc1b90c41941";
 
         public const string ReswFileCSharpCodeGenerator = "{FAE04EC1-301F-11D3-BF4B-00C04F79EFBC}";

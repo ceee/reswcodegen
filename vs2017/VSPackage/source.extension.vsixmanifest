@@ -3,11 +3,11 @@
                  xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011"
                  xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="6a4c1726-440f-4b2d-a2e5-711277da6099"
-                  Version="1.5"
+        <Identity Id="1a4c1726-440f-4b2d-a2e5-711277da6099"
+                  Version="2.0"
                   Language="en-US"
-                  Publisher="Christian Resma Helle" />
-        <DisplayName>ResW File Code Generator</DisplayName>
+                  Publisher="Tobias Klika" />
+        <DisplayName>ResW File Code Generator MOD</DisplayName>
         <Description xml:space="preserve">A Visual Studio Custom Tool for generating a strongly typed helper class for accessing localized resources from a .ResW file.</Description>
         <MoreInfo>http://visualstudiogallery.msdn.microsoft.com/3ab88efd-1afb-4ff5-9faf-8825a282596a</MoreInfo>
         <License>License.txt</License>

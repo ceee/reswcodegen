@@ -11,7 +11,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
                                "C# ResW File Code Generator", 
                                Guids.ReswFileCSharpCodeGenerator, 
                                GeneratesDesignTimeSource = true, 
-                               GeneratorRegKeyName = "ReswFileCodeGenerator")]
+                               GeneratorRegKeyName = "ReswFileCodeGeneratorMod")]
     public class ReswFileCSharpCodeGenerator : ReswFileCodeGenerator
     {
         public ReswFileCSharpCodeGenerator()

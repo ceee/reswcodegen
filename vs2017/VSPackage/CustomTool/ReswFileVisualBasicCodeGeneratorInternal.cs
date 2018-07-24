@@ -12,7 +12,7 @@ namespace ChristianHelle.DeveloperTools.CodeGenerators.Resw.VSPackage.CustomTool
                                "Visual Basic ResW File Code Generator (Internal class)",
                                Guids.ReswFileVisualBasicCodeGenerator,
                                GeneratesDesignTimeSource = true,
-                               GeneratorRegKeyName = "InternalReswFileCodeGenerator")]
+                               GeneratorRegKeyName = "InternalReswFileCodeGeneratorMod")]
     public class ReswFileVisualBasicCodeGeneratorInternal : ReswFileCodeGenerator
     {
         public ReswFileVisualBasicCodeGeneratorInternal()
